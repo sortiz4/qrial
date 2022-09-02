@@ -45,21 +45,21 @@ function getCommandOptions() {
     alias: 'deserialize',
     boolean: true,
     default: false,
-    describe: 'Deserializes a JSON schema into (PNG) QR codes.',
+    describe: 'Deserializes a JSON schema into (PNG) QR codes',
   };
 
   const serializeOptions = {
     alias: 'serialize',
     boolean: true,
     default: false,
-    describe: 'Serializes (PNG) QR codes into a JSON schema.',
+    describe: 'Serializes (PNG) QR codes into a JSON schema',
   };
 
   const outputOptions = {
     alias: 'output',
     string: true,
     default: '',
-    describe: 'Where file(s) produced by this tool should be saved.',
+    describe: 'Where file(s) produced by this tool should be saved',
   };
 
   return (

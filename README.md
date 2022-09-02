@@ -5,11 +5,11 @@ Qrial serializes and deserializes QR codes to and from a JSON schema.
 Qrial can be installed as a global command or local package.
 
 ```sh
-npm install -g github:sortiz4/qrial#1.0.0
+npm install -g github:sortiz4/qrial#1.1.0
 ```
 
 ```json
-"qrial": "github:sortiz4/qrial#1.0.0"
+"qrial": "github:sortiz4/qrial#1.1.0"
 ```
 
 `qrial` operates as a serializer or deserializer. As a serializer, the output
@@ -21,9 +21,9 @@ codes will be saved and the list of files should be JSON schemas.
 Usage: qrial [-s|-d] [-o PATH] [FILES]
 
 Options:
-  -d, --deserialize  Deserializes a JSON schema into (PNG) QR codes.      [boolean] [default: false]
-  -s, --serialize    Serializes (PNG) QR codes into a JSON schema.        [boolean] [default: false]
-  -o, --output       Where file(s) produced by this tool should be saved.     [string] [default: ""]
+  -d, --deserialize  Deserializes a JSON schema into (PNG) QR codes       [boolean] [default: false]
+  -s, --serialize    Serializes (PNG) QR codes into a JSON schema         [boolean] [default: false]
+  -o, --output       Where file(s) produced by this tool should be saved      [string] [default: ""]
   -h, --help         Show help                                                             [boolean]
   -v, --version      Show version number                                                   [boolean]
 ```
