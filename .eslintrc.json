@@ -1,0 +1,46 @@
+{
+  "root": true,
+  "overrides": [
+    {
+      "files": [
+        "*.js",
+        "*.mjs"
+      ],
+      "parserOptions": {
+        "ecmaVersion": 2022,
+        "sourceType": "module"
+      },
+      "env": {
+        "es6": true,
+        "jasmine": true,
+        "node": true
+      },
+      "extends": [
+        "eslint:recommended"
+      ],
+      "rules": {
+        "arrow-body-style": 0,
+        "comma-dangle": [
+          "error",
+          "always-multiline"
+        ],
+        "no-empty": [
+          "error",
+          {
+            "allowEmptyCatch": true
+          }
+        ],
+        "no-underscore-dangle": 0,
+        "object-curly-spacing": [
+          "error",
+          "always"
+        ],
+        "prefer-arrow/prefer-arrow-functions": 0,
+        "semi": [
+          "error",
+          "always"
+        ]
+      }
+    }
+  ]
+}
