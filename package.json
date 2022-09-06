@@ -1,7 +1,7 @@
 {
   "name": "qrial",
   "author": "Steven Ortiz",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "description": "Serialize and deserialize QR codes.",
   "homepage": "https://github.com/sortiz4/qrial",
