@@ -8,14 +8,12 @@
   "main": "./src/index.mjs",
   "bin": "./src/index.mjs",
   "dependencies": {
-    "glob": "^8.0.3",
     "jsqr": "^1.4.0",
     "pngjs": "^6.0.0",
     "qrcode": "^1.5.1",
     "yargs": "^17.5.1"
   },
   "devDependencies": {
-    "@types/glob": "^8.0.0",
     "@types/node": "^18.7.14",
     "@types/yargs": "^17.0.12",
     "eslint": "^8.23.0",
