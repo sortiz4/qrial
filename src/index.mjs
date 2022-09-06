@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import qrFromImage from 'jsqr';
 import fs from 'node:fs';
 import path from 'node:path';
