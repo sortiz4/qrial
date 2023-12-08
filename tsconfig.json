@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "sourceMap": true,
+    "declaration": true,
+    "alwaysStrict": true,
+    "importHelpers": true,
+    "noImplicitThis": true,
+    "moduleResolution": "nodenext",
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "downlevelIteration": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "experimentalDecorators": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true,
+    "allowSyntheticDefaultImports": true,
+    "strictPropertyInitialization": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "nodenext",
+    "target": "es2020",
+    "lib": [
+      "es2020",
+      "dom"
+    ]
+  }
+}

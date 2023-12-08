@@ -3,23 +3,70 @@
   "overrides": [
     {
       "files": [
-        "*.js",
-        "*.mjs"
+        "*.ts"
       ],
       "parserOptions": {
-        "ecmaVersion": 2022,
-        "sourceType": "module"
-      },
-      "env": {
-        "es6": true,
-        "jasmine": true,
-        "node": true
+        "project": "tsconfig.json",
+        "createDefaultProgram": true
       },
       "extends": [
-        "eslint:recommended"
+        "plugin:@typescript-eslint/recommended"
       ],
       "rules": {
-        "arrow-body-style": 0,
+        "@typescript-eslint/ban-types": [
+          "error",
+          {
+            "types": {
+              "Function": false,
+              "object": false
+            }
+          }
+        ],
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            "allowExpressions": true,
+            "allowHigherOrderFunctions": false,
+            "allowDirectConstAssertionInArrowFunctions": false
+          }
+        ],
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "default": {
+              "memberTypes": [
+                "static-field",
+                "instance-field",
+                "abstract-field",
+                "constructor",
+                "static-method",
+                "instance-method",
+                "abstract-method"
+              ]
+            }
+          }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "enumMember",
+            "format": [
+              "PascalCase"
+            ]
+          }
+        ],
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_",
+            "caughtErrorsIgnorePattern": "^_",
+            "destructuredArrayIgnorePattern": "^_"
+          }
+        ],
+        "arrow-body-style": "off",
         "comma-dangle": [
           "error",
           "always-multiline"
@@ -30,16 +77,12 @@
             "allowEmptyCatch": true
           }
         ],
-        "no-underscore-dangle": 0,
+        "no-underscore-dangle": "off",
         "object-curly-spacing": [
           "error",
           "always"
         ],
-        "prefer-arrow/prefer-arrow-functions": 0,
-        "semi": [
-          "error",
-          "always"
-        ]
+        "prefer-arrow/prefer-arrow-functions": "off"
       }
     }
   ]

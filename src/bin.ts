@@ -1,25 +1,39 @@
-#!/usr/bin/env node
 import qrFromImage from 'jsqr';
 import fs from 'node:fs';
 import path from 'node:path';
 import { PNG as Png } from 'pngjs';
 import { toFile as qrToFile } from 'qrcode';
-import yargs from 'yargs';
-import definition from '../package.json' assert { type: 'json' };
+import yargs, { Options as YargsOptions } from 'yargs';
+import metadata from '../package.json' assert { type: 'json' };
+
+interface Schema {
+  readonly name: string;
+  readonly data: string;
+}
+
+interface Options {
+  readonly _: string[];
+  readonly output: string;
+  readonly serialize: boolean;
+  readonly deserialize: boolean;
+}
 
 class QrCode {
-  static fromJson(filePath) {
-    return JSON.parse(fs.readFileSync(filePath)).map(code => new this(code.name, code.data));
+  constructor(public name: string, public text: string) {
   }
 
-  static fromPng(filePath) {
+  static fromJson(filePath: string): QrCode[] {
+    return (JSON.parse(fs.readFileSync(filePath, 'utf-8')) as Schema[]).map(code => new this(code.name, code.data));
+  }
+
+  static fromPng(filePath: string): QrCode {
     const name = path.basename(filePath);
     const png = Png.sync.read(fs.readFileSync(filePath));
     const qr = qrFromImage(new Uint8ClampedArray(png.data), png.width, png.height);
-    return new this(name, qr.data);
+    return new this(name, qr?.data ?? '');
   }
 
-  static tryFromJson(filePath) {
+  static tryFromJson(filePath: string): QrCode[] | void {
     try {
       return this.fromJson(filePath);
     } catch {
@@ -27,36 +41,31 @@ class QrCode {
     }
   }
 
-  static tryFromPng(filePath) {
+  static tryFromPng(filePath: string): QrCode | void {
     try {
       return this.fromPng(filePath);
     } catch {
       // Return undefined
     }
   }
-
-  constructor(name, text) {
-    this.name = name;
-    this.text = text;
-  }
 }
 
-function getCommandOptions() {
-  const deserializeOptions = {
+function getCommandOptions(): Options {
+  const deserializeOptions: YargsOptions = {
     alias: 'deserialize',
     boolean: true,
     default: false,
     describe: 'Deserializes a JSON schema into (PNG) QR codes',
   };
 
-  const serializeOptions = {
+  const serializeOptions: YargsOptions = {
     alias: 'serialize',
     boolean: true,
     default: false,
     describe: 'Serializes (PNG) QR codes into a JSON schema',
   };
 
-  const outputOptions = {
+  const outputOptions: YargsOptions = {
     alias: 'output',
     string: true,
     default: '',
@@ -65,20 +74,20 @@ function getCommandOptions() {
 
   return (
     yargs(process.argv.slice(2))
+      .scriptName(metadata.name)
+      .version(metadata.version)
+      .help()
+      .wrap(100)
       .usage('Usage: $0 [-s|-d] [-o PATH] [FILES]')
       .option('d', deserializeOptions)
       .option('s', serializeOptions)
       .option('o', outputOptions)
-      .scriptName(definition.name)
-      .version(definition.version)
-      .help()
       .alias({ h: 'help', v: 'version' })
-      .wrap(100)
-      .argv
+      .argv as unknown as Options
   );
 }
 
-function main() {
+function main(): void {
   const options = getCommandOptions();
 
   if (options.deserialize) {
@@ -101,14 +110,14 @@ function main() {
 
     // Deserialize the data
     for (const code of codes) {
-      qrToFile(path.join(output, code.name), code.text, { type: 'png', scale: 8 });
+      qrToFile(path.join(output, code?.name ?? ''), code?.text ?? '', { type: 'png', scale: 8 });
     }
   } else if (options.serialize) {
     const schema = (
       options._
         .map(filePath => QrCode.tryFromPng(filePath))
         .filter(item => item instanceof QrCode)
-        .map(code => ({ name: code.name, data: code.text }))
+        .map(code => ({ name: code?.name, data: code?.text }))
     );
 
     // Resolve the output
