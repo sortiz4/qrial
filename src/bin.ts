@@ -1,10 +1,11 @@
 import jsQr, { QRCode as QrCode } from 'jsqr';
 import fs from 'node:fs';
 import path from 'node:path';
+import process from 'node:process';
 import { PNG as Png } from 'pngjs';
 import { toFile as qrToFile } from 'qrcode';
 import yargs, { Options as YargsOptions } from 'yargs';
-import metadata from '../package.json' assert { type: 'json' };
+import metadata from '../package.json' with { type: 'json' };
 
 interface Schema {
   readonly name: string;
@@ -51,7 +52,7 @@ function deserialize(files: string[], output: string): void {
 
 function serialize(files: string[], output: string): void {
   function imageToQr(data: Uint8ClampedArray, width: number, height: number): QrCode {
-    return (jsQr as unknown as Function)(data, width, height);
+    return (jsQr as unknown as typeof imageToQr)(data, width, height);
   }
 
   function fromPng(file: string): Schema {
@@ -129,8 +130,10 @@ function main(): void {
   }
 }
 
-try {
-  main();
-} catch (error) {
-  console.error(error);
+if (import.meta.main) {
+  try {
+    main();
+  } catch (error) {
+    console.error(error);
+  }
 }

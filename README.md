@@ -2,14 +2,14 @@
 Qrial serializes and deserializes QR codes to and from a JSON schema.
 
 ## Usage
-Qrial can be installed as a global command or local package.
+Qrial can be installed as a global command or local package with Deno.
 
 ```sh
-npm install -g github:sortiz4/qrial#2.0.0
+deno install -g github:sortiz4/qrial#3.0.0
 ```
 
 ```json
-"qrial": "github:sortiz4/qrial#2.0.0"
+"qrial": "github:sortiz4/qrial#3.0.0"
 ```
 
 `qrial` operates as a serializer or deserializer. As a serializer, the output

@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "noEmit": true,
     "outDir": "./dist",
     "baseUrl": "./",
     "sourceMap": true,
@@ -8,6 +9,7 @@
     "alwaysStrict": true,
     "importHelpers": true,
     "noImplicitThis": true,
+    "esModuleInterop": true,
     "moduleResolution": "nodenext",
     "strictNullChecks": true,
     "resolveJsonModule": true,
@@ -15,16 +17,19 @@
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "noUncheckedIndexedAccess": true,
+    "allowImportingTsExtensions": true,
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": true,
     "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization": true,
     "forceConsistentCasingInFileNames": true,
     "module": "nodenext",
-    "target": "es2020",
+    "target": "es6",
     "lib": [
-      "es2020",
-      "dom"
+      "dom",
+      "esnext"
     ]
   }
 }
